@@ -2,3 +2,7 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+ .col-md-2{
+     padding-top: 7.5px;
+     padding-bottom: 7.5px;
+ }

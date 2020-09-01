@@ -29,4 +29,33 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+	 $('document').ready(function(){
+		 userDetailAjax();
+	 })
+
+	 function userDetailAjax(){
+		 $('body .container .link').on('click', function(e){
+			 e.preventDefault();
+			 console.log($(this).data('user_id'));
+			 $userId = $(this).data('user_id');
+			 $.ajax({
+				type:"get",
+				dataType:"json",
+				url: wpAjax.ajaxurl,
+				data:{ action : "user_details", userId : userId},
+				success: function(response) {
+					if(response.type == "success") {
+						jQuery("#vote_counter").html(response.vote_count)
+					}
+					else {
+						alert("Your vote could not be added")
+					}
+				}
+				.fail(function() {
+					alert( "error" );
+				})
+			 });
+		 });
+	 }
+
 })( jQuery );
