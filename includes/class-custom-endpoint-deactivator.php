@@ -30,7 +30,7 @@ class Custom_Endpoint_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		delete_option( '_inpsyde_custom_endpoint' );
 	}
 
 }

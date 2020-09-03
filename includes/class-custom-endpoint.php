@@ -177,6 +177,9 @@ class Custom_Endpoint {
 		$this->loader->add_filter( 'query_vars', $plugin_public, 'custom_query_vars', 1, 1 );
 		$this->loader->add_action( 'template_redirect', $plugin_public, 'custom_template_redirect');
 
+		$this->loader->add_action( 'wp_ajax_custom_user_details', $plugin_public, 'get_user_details');
+		$this->loader->add_action( 'wp_ajax_nopriv_custom_user_details', $plugin_public, 'get_user_details');
+
 	}
 
 	/**

@@ -30,7 +30,7 @@ class Custom_Endpoint_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-
+		update_option( '_inpsyde_custom_endpoint', 'endpoint' ); 
 	}
 
 }

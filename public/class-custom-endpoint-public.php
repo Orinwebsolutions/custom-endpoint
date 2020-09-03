@@ -97,14 +97,8 @@ class Custom_Endpoint_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/custom-endpoint-public.js', array( 'jquery' ), $this->version, false );
-		wp_localize_script( $this->plugin_name,'wpAjax', array( 'ajaxurl' => admin_url('admin-ajax.php') ));
-
-		// wp_register_script( "my_voter_script", WP_PLUGIN_URL.'/my_plugin/my_voter_script.js', array('jquery') );
-		// wp_localize_script( 'my_voter_script', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));        
-	 
-		// wp_enqueue_script( 'jquery' );
-		// wp_enqueue_script( 'my_voter_script' );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/custom-endpoint-public.js', array( 'jquery' ), $this->version, true );
+		wp_localize_script( $this->plugin_name, 'wpAjax', array( 'ajaxurl' => admin_url('admin-ajax.php') ));
 
 	}
 
@@ -173,6 +167,22 @@ class Custom_Endpoint_Public {
 		}
 
 		return false;
+	}
+	public function get_user_details()
+	{
+		if ( !wp_verify_nonce( $_POST['userNonce'], "user_profile_nonce")) {
+			exit("Not allowed!!");
+		 }  
+		 if($_POST['userId'])
+		 {
+			// https://jsonplaceholder.typicode.com/users?id=1
+			$arg = array( 
+				'id' => $_POST['userId'],  
+			); 
+			$result = $this->request_new('GET', 'users', $arg);
+			// wp_send_json(json_encode($result));
+			wp_send_json($result);
+		 }
 	}
 
 }

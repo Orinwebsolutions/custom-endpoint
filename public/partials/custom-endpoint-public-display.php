@@ -21,6 +21,7 @@
             if(!empty($result))
             {
         ?>
+            <div class="loader-section"><div class="loader"></div></div>
             <div class="row text-center">
                 <div class="col-sm-12 col-md-2">
                     <strong>ID</strong>
@@ -42,17 +43,18 @@
                 </div>
             </div>
             <?php 
+            $nonce = wp_create_nonce("user_profile_nonce");
                 foreach ($result as $key => $value) {
             ?>
             <div class="row text-center">
                 <div class="col-sm-12 col-md-2">
-                    <a class="link user_id" data-user_id="<?php echo $value->id;?>" href="#"><?php echo $value->id; ?></a>
+                    <a class="link user_id" data-user_id="<?php echo $value->id;?>"  data-user_nonce="<?php echo $nonce;?>" href="#"><?php echo $value->id; ?></a>
                 </div>
                 <div class="col-sm-12 col-md-2">
-                    <a class="link user_id" data-user_id="<?php echo $value->id;?>" href="#"><?php echo $value->name; ?></a>
+                    <a class="link user_id" data-user_id="<?php echo $value->id;?>" data-user_nonce="<?php echo $nonce;?>" href="#"><?php echo $value->name; ?></a>
                 </div>
                 <div class="col-sm-12 col-md-2">
-                    <a class="link user_id" data-user_id="<?php echo $value->id;?>" href="#"><?php echo $value->username; ?></a>
+                    <a class="link user_id" data-user_id="<?php echo $value->id;?>" data-user_nonce="<?php echo $nonce;?>" href="#"><?php echo $value->username; ?></a>
                 </div>
                 <div class="col-sm-12 col-md-2">
                     <?php echo $value->email; ?>
@@ -77,6 +79,46 @@
             <?php
                 }
             ?>
+            <div class="user_detail">
+                <div class="row text-center">
+                    <div class="col-sm-12 col-md-2">
+                        <strong>Name:</strong>
+                    </div>
+                    <div class="col-sm-12 col-md-10" id="name">
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <strong>Username:</strong>
+                    </div>
+                    <div class="col-sm-12 col-md-10" id="username">
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <strong>Email:</strong>
+                    </div>
+                    <div class="col-sm-12 col-md-10" id="email">
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <strong>Address:</strong>
+                    </div>
+                    <div class="col-sm-12 col-md-10" id="address">
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <strong>Phone:</strong>
+                    </div>
+                    <div class="col-sm-12 col-md-10" id="contactNo">
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <strong>Website:</strong>
+                    </div>
+                    <div class="col-sm-12 col-md-10" id="website">
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <strong>Company:</strong>
+                    </div>
+                    <div class="col-sm-12 col-md-10" id="company">
+                    </div>
+
+                </div>
+            </div>
         <?php
         }
         else

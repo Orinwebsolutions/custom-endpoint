@@ -36,26 +36,41 @@
 	 function userDetailAjax(){
 		 $('body .container .link').on('click', function(e){
 			 e.preventDefault();
-			 console.log($(this).data('user_id'));
-			 $userId = $(this).data('user_id');
+			 var userId = $(this).data('user_id');
+			 var userNonce = $(this).data('user_nonce');
 			 $.ajax({
-				type:"get",
+				type:"POST",
 				dataType:"json",
 				url: wpAjax.ajaxurl,
-				data:{ action : "user_details", userId : userId},
+				data:{ action : "custom_user_details", userId : userId, userNonce : userNonce},
+				beforeSend: function(){
+					// $(placeholder).addClass('loading');
+				},
 				success: function(response) {
-					if(response.type == "success") {
-						jQuery("#vote_counter").html(response.vote_count)
-					}
-					else {
-						alert("Your vote could not be added")
-					}
+					$('.user_detail').css('display', 'block');
+					// console.log(response);
+					$('.user_detail #name').html(response[0].name);
+					$('.user_detail #username').html(response[0].username);
+					$('.user_detail #email').html(response[0].email);
+					$('.user_detail #address').html(response[0].address.street+','+response[0].address.suite+','+response[0].address.city+','+response[0].address.zipcode);
+					$('.user_detail #contactNo').html(response[0].phone);
+					$('.user_detail #website').html(response[0].website);
+					$('.user_detail #company').html(response[0].company.name);
+					// if(response.type == "success") {
+					// 	jQuery("#vote_counter").html(response.vote_count)
+					// }
+					// else {
+					// 	alert("Your vote could not be added")
+					// }
+				},
+				error: function (request, status, error) {
+					// alert(request.responseText);
+					alert(error);
 				}
-				.fail(function() {
-					alert( "error" );
-				})
 			 });
 		 });
 	 }
+
+	//  data : {action: "my_user_vote", post_id : post_id, nonce: nonce},
 
 })( jQuery );
