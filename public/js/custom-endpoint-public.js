@@ -31,6 +31,7 @@
 
 	 $('document').ready(function(){
 		 userDetailAjax();
+		 gobackBtn();
 	 })
 
 	 function userDetailAjax(){
@@ -44,11 +45,21 @@
 				url: wpAjax.ajaxurl,
 				data:{ action : "custom_user_details", userId : userId, userNonce : userNonce},
 				beforeSend: function(){
-					// $(placeholder).addClass('loading');
+					$('body .container').addClass('loading');
+					$('body .container .loader').css('display', 'block');
 				},
 				success: function(response) {
-					$('.user_detail').css('display', 'block');
-					// console.log(response);
+					$('body .container').removeClass('loading');
+					$('body .container .loader').css('display', 'none');
+					
+					$('body .container .main-container').slideUp( "slow", function(){
+						$('body .container .main-container').css('display', 'none');
+					});
+					
+					$('body .container .user_detail').slideDown( "slow", function(){
+						$('body .container .user_detail').css('display', 'block');
+					});
+
 					$('.user_detail #name').html(response[0].name);
 					$('.user_detail #username').html(response[0].username);
 					$('.user_detail #email').html(response[0].email);
@@ -56,21 +67,24 @@
 					$('.user_detail #contactNo').html(response[0].phone);
 					$('.user_detail #website').html(response[0].website);
 					$('.user_detail #company').html(response[0].company.name);
-					// if(response.type == "success") {
-					// 	jQuery("#vote_counter").html(response.vote_count)
-					// }
-					// else {
-					// 	alert("Your vote could not be added")
-					// }
 				},
 				error: function (request, status, error) {
-					// alert(request.responseText);
 					alert(error);
 				}
 			 });
 		 });
 	 }
 
-	//  data : {action: "my_user_vote", post_id : post_id, nonce: nonce},
+	 function gobackBtn() {
+		$('body .container #gobackbtn').on('click', function(e){
+			$('body .container .main-container').slideDown( "slow", function(){
+				$('body .container .main-container').css('display', 'block');
+			});
+			
+			$('body .container .user_detail').slideUp( "slow", function(){
+				$('body .container .user_detail').css('display', 'none');
+			});
+		});
+	 }
 
 })( jQuery );

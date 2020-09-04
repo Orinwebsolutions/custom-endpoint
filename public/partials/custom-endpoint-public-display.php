@@ -21,7 +21,8 @@
             if(!empty($result))
             {
         ?>
-            <div class="loader-section"><div class="loader"></div></div>
+            <div class="loader"></div>
+            <div class="main-container">
             <div class="row text-center">
                 <div class="col-sm-12 col-md-2">
                     <strong>ID</strong>
@@ -79,8 +80,17 @@
             <?php
                 }
             ?>
+            </div>
             <div class="user_detail">
-                <div class="row text-center">
+                <div class=header>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="#" id="gobackbtn">Go back</a>
+                            <h2>User details<h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-12 col-md-2">
                         <strong>Name:</strong>
                     </div>
