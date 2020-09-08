@@ -119,18 +119,14 @@ class Custom_Endpoint_Public {
 		$custom_api = intval( get_query_var( 'custom_api' ) );
 		if ( $custom_api ) {
 
-			$arg = array(); 
-			$result = $this->request_new('GET', 'users', $arg);			
+			$result = get_transient('custom_end_point');
 
-			// $arg = array( 
-			// 	'postId' => '1',  
-			// ); 
-			// $result = $this->request_new('GET', 'comments', $arg);
-
-			// $arg = array( ); 
-			// $result = $this->request_new('GET', 'posts', $arg);
-
-			// var_dump($result);
+			if ($result === false) {
+				$arg = array(); 
+				$result = $this->request_new('GET', 'users', $arg);	
+				set_transient('custom_end_point', $result, 3600);
+			}
+					
 			include plugin_dir_path(  __FILE__ ) . 'partials/custom-endpoint-public-display.php';
 			die;
 		}
@@ -150,8 +146,6 @@ class Custom_Endpoint_Public {
 		} else if ( ! empty( $body ) && is_array( $body ) ) {
 			$requesturl .= '?' . http_build_query( $body );
 		}
-
-		// echo $requesturl;
 
 		$response = wp_remote_request( esc_url_raw( $requesturl ), $params );
 		$status_code = wp_remote_retrieve_response_code( $response );
@@ -175,12 +169,17 @@ class Custom_Endpoint_Public {
 		 }  
 		 if($_POST['userId'])
 		 {
-			// https://jsonplaceholder.typicode.com/users?id=1
-			$arg = array( 
-				'id' => $_POST['userId'],  
-			); 
-			$result = $this->request_new('GET', 'users', $arg);
-			// wp_send_json(json_encode($result));
+						
+			$result = get_transient('custom_end_point_user');
+
+			if ($result === false || ($result[0]->id != $_POST['userId']) ) {
+				$arg = array( 
+					'id' => $_POST['userId'],  
+				); 
+				$result = $this->request_new('GET', 'users', $arg);
+				set_transient('custom_end_point_user', $result, 3600);
+			}
+
 			wp_send_json($result);
 		 }
 	}

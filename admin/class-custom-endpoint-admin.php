@@ -100,4 +100,25 @@ class Custom_Endpoint_Admin {
 
 	}
 
+	public function admin_option_page()
+	{
+		add_menu_page(
+            __( 'Custom End point', 'custom-endpoint' ),
+            __( 'Custom End settings', 'custom-endpoint' ),
+            'manage_options',
+			'custom-endpoint',
+            array(
+                $this,
+                'settings_page'
+			),
+			'',
+			'90'
+			
+        );
+	}
+
+	function settings_page() {
+		include plugin_dir_path( __FILE__ ) . 'partials/custom-endpoint-admin-display.php';
+    }
+
 }

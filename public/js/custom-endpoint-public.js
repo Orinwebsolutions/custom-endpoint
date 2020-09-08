@@ -77,6 +77,7 @@
 
 	 function gobackBtn() {
 		$('body .container #gobackbtn').on('click', function(e){
+			e.preventDefault();
 			$('body .container .main-container').slideDown( "slow", function(){
 				$('body .container .main-container').css('display', 'block');
 			});
