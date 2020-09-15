@@ -103,8 +103,8 @@ class Custom_Endpoint_Admin {
 	public function admin_option_page()
 	{
 		add_menu_page(
-            __( 'Custom End point', 'custom-endpoint' ),
-            __( 'Custom End settings', 'custom-endpoint' ),
+            __( 'End point', 'custom-endpoint' ),
+            __( 'End point settings', 'custom-endpoint' ),
             'manage_options',
 			'custom-endpoint',
             array(
@@ -119,6 +119,37 @@ class Custom_Endpoint_Admin {
 
 	function settings_page() {
 		include plugin_dir_path( __FILE__ ) . 'partials/custom-endpoint-admin-display.php';
-    }
+	}
+	
+	
+	function admin_field_settings() {
+		register_setting( 
+			'custom_endpoint_group', // settings group name 
+			'_inpsyde_custom_endpoint', // option name
+			'custom_endpoints_validate'  // sanitization function
+		);
+		add_settings_section( 
+			'custom_endpoint_settings', // section ID
+			'', //Title
+			'', //Callback
+			'custom-endpoint'// page slug
+		);
 
+		add_settings_field( 
+			'some_iD', // section ID
+			'Endpoint URL',  //title
+			array($this,'custom_endpoint_field_callback'), //callback
+			'custom-endpoint', //page slug 
+			'custom_endpoint_settings',// settings ID
+			array( 
+				'label_for' => 'custom_endpoint_settings_url'
+			)
+		);
+	}
+
+	function custom_endpoint_field_callback() {
+		$options = get_option( '_inpsyde_custom_endpoint' );
+		$val = ($options['url'])? $options['url'] : '';
+		echo "<input id='_inpsyde_custom_endpoint[url]' name='_inpsyde_custom_endpoint[url]' type='text' value='". esc_attr( $val ). "' /><br/><small>Enter url without spacing. Ex test_url/ testurl</small>";
+	}
 }

@@ -157,6 +157,7 @@ class Custom_Endpoint {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_option_page' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'admin_field_settings' );
 
 	}
 
@@ -174,7 +175,7 @@ class Custom_Endpoint {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		$this->loader->add_filter( 'generate_rewrite_rules', $plugin_public, 'custom_init',1,1 );
+		$this->loader->add_filter( 'generate_rewrite_rules', $plugin_public, 'rewite_rule',1,1 );
 		$this->loader->add_filter( 'query_vars', $plugin_public, 'custom_query_vars', 1, 1 );
 		$this->loader->add_action( 'template_redirect', $plugin_public, 'custom_template_redirect');
 

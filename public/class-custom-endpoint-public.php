@@ -1,5 +1,5 @@
 <?php
-
+// namespace CustomEndpointPublic;
 /**
  * The public-facing functionality of the plugin.
  *
@@ -102,9 +102,12 @@ class Custom_Endpoint_Public {
 
 	}
 
-	public function custom_init($wp_rewrite){
+	public function rewite_rule($wp_rewrite){
+		$options = get_option( '_inpsyde_custom_endpoint' );
+		$val = ($options['url'])? $options['url'] : 'custom-endpoint';
+
 		$wp_rewrite->rules = array_merge(
-			['my-api$' => 'index.php?custom_api=1'],
+			[$val.'$' => 'index.php?custom_api=1'],
 			$wp_rewrite->rules
 		);
     }

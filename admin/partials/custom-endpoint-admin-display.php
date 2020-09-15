@@ -14,4 +14,13 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<h2>Custom End point settings</h2>
+<div class="wrap">
+    <h1>Plugin Settings</h1>
+    <form method="post" action="options.php">
+    <?php 
+        settings_fields( 'custom_endpoint_group' ); // settings group name
+        do_settings_sections( 'custom-endpoint' ); // just a page slug
+        submit_button();
+    ?>
+    </form>
+</div>
