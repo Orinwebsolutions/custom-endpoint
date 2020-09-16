@@ -127,10 +127,16 @@ class Custom_Endpoint_Public {
 			if ($result === false) {
 				$arg = array(); 
 				$result = $this->request_new('GET', 'users', $arg);	
-				set_transient('custom_end_point', $result, 3600);
+				set_transient('custom_end_point', $result, 300);
 			}
 					
-			include plugin_dir_path(  __FILE__ ) . 'partials/custom-endpoint-public-display.php';
+			$template = apply_filters( 'template_filter', $templatepath);
+			if($template && strpos($template, 'custom-endpoint-public-display.php') ){
+				echo 'up';
+				include $template;
+			}else{
+				include plugin_dir_path(  __FILE__ ) . 'partials/custom-endpoint-public-display.php';	
+			}
 			die;
 		}
 	}
@@ -180,7 +186,7 @@ class Custom_Endpoint_Public {
 					'id' => $_POST['userId'],  
 				); 
 				$result = $this->request_new('GET', 'users', $arg);
-				set_transient('custom_end_point_user', $result, 3600);
+				set_transient('custom_end_point_user', $result, 60);
 			}
 
 			wp_send_json($result);

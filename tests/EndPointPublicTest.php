@@ -12,14 +12,14 @@ class EndPointPublicTest extends PHPUnit\Framework\TestCase {
     
     public function publicClassFn(){
         $pluginName = 'custom-endpoint';
-		$version = '1.0.0';
+		$pluginVersion = '1.0.0';
 
         $plugin = Mockery::mock( 'plugin', [
             'plugin' => $pluginName,
         ] );
 
         $version = Mockery::mock( 'version', [
-            'version' => $version,
+            'version' => $pluginVersion,
         ] );
         return new Custom_Endpoint_Public($plugin, $version );
     }
@@ -52,9 +52,6 @@ class EndPointPublicTest extends PHPUnit\Framework\TestCase {
             'return' => $obj
         ) );
             
-        \WP_Mock::passthruFunction( 'esc_url_raw', array( 'times' => 1 )) ;
-        \WP_Mock::passthruFunction( 'wp_remote_retrieve_response_code', array( 'times' => 1 )) ;
-
         $cusApi = $this->publicClassFn();
 
         $arg = array();
