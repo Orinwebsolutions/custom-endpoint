@@ -63,7 +63,7 @@ If user experience 404 error message when you access the virtual page(https://sa
 
 **Contributor Email:** amilapriyankara16@gmail.com
 
-**Tags:** api
+**Tags:** api, virtual page
 
 **Tested up to:**  5.5.1
 
