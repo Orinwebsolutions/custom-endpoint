@@ -4,7 +4,7 @@ A simple plugin for setup a virtual endpoint, which is connect to [jsonplacehold
 
 ## Description ##
 
-Activating plugin will be setup a virtual page, example "https://sampledomain.com/my-api". So accessing the virtual page, user will be connect to https://jsonplaceholder.typicode.com api in the backend and fetch user details and display on the virtual page. Once api call fetch the results data and it will be store in database in 5 minutes expiration. This is decrease page loading time as well. Additionally following features are integrated with in the plugin.
+Activating plugin will be setup a virtual page, example "https://sampledomain.com/my-api". So accessing the virtual page, user will be connect to https://jsonplaceholder.typicode.com api in the backend and fetch user details and display on the virtual page. Once api call fetch the results data and it will be store in database for 5 minutes expiration. This is decrease page loading time as well. Additionally following features are integrated with in the plugin.
 
 * Template override from current theme.
 * Possibility to change virtual page name
