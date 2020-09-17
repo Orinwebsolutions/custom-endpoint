@@ -32,7 +32,7 @@ Upload Method:
 ## Features ##
 
 1. Customize page template.
-    1. Locate the template file inside plugin folder (\wp-content\plugins\custom-endpoint\public\partials), Copy the file "custom-endpoint-public-display.php" to you theme folder(\wp-content\plugins\your-theme)
+    1. Locate the template file inside plugin folder (\wp-content\plugins\custom-endpoint\public\partials), Copy the file "custom-endpoint-public-display.php" to you theme folder(\wp-content\plugins\your-theme).**Note** keep file name as it is.
     2. Add following code to you function.php file in your theme
         ```
         add_filter( 'template_filter', 'override_template' );
