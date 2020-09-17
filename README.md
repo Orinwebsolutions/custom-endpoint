@@ -34,11 +34,13 @@ Upload Method:
 1. Customize page template.
     1. Locate the template file inside plugin folder (\wp-content\plugins\custom-endpoint\public\partials), Copy the file "custom-endpoint-public-display.php" to you theme folder(\wp-content\plugins\your-theme)
     2. Add following code to you function.php file in your theme
-        
+        ```
         add_filter( 'template_filter', 'override_temeplate' );
+        
         function override_temeplate(){
             return get_template_directory() . '/custom-endpoint-public-display.php';
         }
+        ```
 
 2. End user have possibility change virtual page name. 
     1. Login to the wordpress backend.  
