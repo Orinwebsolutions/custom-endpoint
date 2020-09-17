@@ -1,6 +1,6 @@
 # Custom Endpoint #
 
-A simple plugin for setup a virtual endpoint, which is connect to [jsonplaceholder api](https://jsonplaceholder.typicode.com) and display details result.
+A simple plugin for setup a virtual endpoint, which is connect to [jsonplaceholder api](https://jsonplaceholder.typicode.com) and fetch api results.
 
 ## Description ##
 
