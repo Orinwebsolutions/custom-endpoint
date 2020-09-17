@@ -4,11 +4,10 @@ A simple plugin for setup a virtual endpoint, which is connect to [jsonplacehold
 
 ## Description ##
 
-Activating plugin will be setup initial virtual page as following exmaple "https://sampledomain.com/my-api". So accessing the virtual page, you will be connect to https://jsonplaceholder.typicode.com api and fetching user details in-order display on the page. Once fetch the result data will store in database in time manner. Which is provide caching mechanism and it will also increase page loading. Following features are integrated with in the plugin.
+Activating plugin will be setup a virtual page, example "https://sampledomain.com/my-api". So accessing the virtual page, user will be connect to https://jsonplaceholder.typicode.com api in the backend and fetch user details and display on the virtual page. Once api call fetch the results data and it will be store in database in 5 minutes expiration. This is decrease page loading time as well. Additionally following features are integrated with in the plugin.
 
-* Template override
-* Changing virtual page name
-* Page setup as a virtual page, so this virtual page won’t be indexing under SEO.
+* Template override from current theme.
+* Possibility to change virtual page name
 * Caching data included
 * Compatible with WordPress Multisite
 
@@ -19,12 +18,16 @@ Dashboard Method:
 2. Click Upload Plugin button on top. And upload the "custom-endpoint.zip" file
 3. Click "Install now",
 4. When installation is complete, you’ll see “Plugin installed successfully.” Click the Activate Plugin button at the bottom of the page.
-You can access [wordpress guide](https://wordpress.org/support/article/managing-plugins/#manual-upload-via-wordpress-admin) for more refernce.
+
+Here is [wordpress guide](https://wordpress.org/support/article/managing-plugins/#manual-upload-via-wordpress-admin) for more reference.
 
 Upload Method:
 
-1. Upload 'custom-endpoint' to the '/wp-content/plugins/' directory using FTP
-2. Activate the plugin through the 'Plugins' menu in WordPress
+1. Unzip "custom-endpoint.zip" file
+2. Upload 'custom-endpoint' files to the '/wp-content/plugins/' directory using [FTP/SFTP](https://help.one.com/hc/en-us/articles/115005585709-How-do-I-connect-to-an-SFTP-server-with-FileZilla-)
+3. Login to wordpress admin
+4. Activate the plugin through the 'Plugins' menu in WordPress
+
 
 ## Features ##
 
@@ -36,15 +39,20 @@ Upload Method:
         function override_temeplate(){
             return get_template_directory() . '/custom-endpoint-public-display.php';
         }
-2. End user have posibility change virtual page name. Login to the backend. On the left hand menu access "End point settings" to direct to settings page.
+
+2. End user have possibility change virtual page name. 
+    1. Login to the wordpress backend.  
+    2. Access "End point settings" plugin setting page on located on left hand wordpress menu.
+    3. So user able add their preferable name for virtual page. **Note** If the new page getting 404 follow below note instruction
+
 
 ### Note ###
-If experience seen 404 error message when you access the virtual page(https://sampledomain.com/my-api). Login to the backend. From left hand menu access Settings -> Permerlinks. Click save button on below.
+If user experience 404 error message when you access the virtual page(https://sampledomain.com/my-api). Access the wordpress backend. From left hand menu access Settings -> Permalinks. Scroll down and click save button. Now you page should be ready for view.
 
 ### Todo Future releases ###
 1. Improvement look and feel.
 2. Data organizing
-3. Api endpoint, user name, password data to be store in backend. Using these detail setup api connection.
+3. Ability adds API endpoint, user name, password data to be store in backend. Using these detail setup api connection.
 4. language translation
 5. Plugin autoupdates
 
